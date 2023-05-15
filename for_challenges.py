@@ -48,9 +48,10 @@ groups = [
     ['Оля', 'Петя', 'Гриша'],
 ]
 a = 0
+print(f'Всего {len(groups)} группы.')
 for i in groups:
     a += 1
-    print(f'Группа {a}: {len(i)} ученика')
+    print(f'Группа {a}: {len(i)} ученика.')
 
 
 
