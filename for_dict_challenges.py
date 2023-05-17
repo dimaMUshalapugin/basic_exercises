@@ -12,7 +12,11 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Петя'},
 ]
-# ???
+from collections import Counter
+sum_students = [i['first_name'] for i in students]
+print(sum_students)
+for i, j in Counter(sum_students).items():
+    print(f'{i}: {j}')
 
 
 # Задание 2
@@ -26,7 +30,10 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Оля'},
 ]
-# ???
+from collections import Counter
+a = Counter(i['first_name'] for i in students).most_common(1)
+print(f'Самое частое имя среди учеников: {a[0][0]}')
+
 
 
 # Задание 3
@@ -51,7 +58,12 @@ school_students = [
         {'first_name': 'Саша'},
     ],
 ]
-# ???
+from collections import Counter
+count = 0
+while count != len(school_students):
+    ab = Counter(i['first_name'] for i in school_students[count]).most_common(1)
+    print(f'Самое частое имя в классе {count+1}: {ab[0][0]}')
+    count += 1
 
 
 # Задание 4
@@ -72,8 +84,9 @@ is_male = {
     'Миша': True,
     'Даша': False,
 }
-# ???
-
+for i in school:
+    print(f"Класс {i['class']}: мальчики {len([j for j in i['students'] if j.get('first_name') in ['Олег', 'Миша']])}, "
+          f"девочки {len([j for j in i['students'] if j.get('first_name') in ['Маша', 'Оля', 'Даша']])}")
 
 # Задание 5
 # По информации о учениках разных классов нужно найти класс, в котором больше всего девочек и больше всего мальчиков
@@ -91,5 +104,8 @@ is_male = {
     'Олег': True,
     'Миша': True,
 }
-# ???
-
+for i in school:
+    if f"{len([j for j in i['students'] if j.get('first_name') in ['Олег', 'Миша']])}" > f"{len([j for j in i['students'] if j.get('first_name') in ['Маша', 'Оля', 'Даша']])}":
+        print(f"Больше всего мальчиков в классе {i['class']}")
+    else:
+        print(f"Больше всего девочек в классе {i['class']}")
