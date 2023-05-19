@@ -2,8 +2,8 @@
 # Необходимо вывести имена всех учеников из списка с новой строки
 
 names = ['Оля', 'Петя', 'Вася', 'Маша']
-for i in names:
-    print(i)
+for name in names:
+    print(name)
 
 
 # Задание 2
@@ -13,8 +13,8 @@ for i in names:
 # Петя: 4
 
 names = ['Оля', 'Петя', 'Вася', 'Маша']
-for i in names:
-    print(f'{i}: {len(i)}')
+for name in names:
+    print(f'{name}: {len(name)}')
 
 
 # Задание 3
@@ -27,11 +27,11 @@ is_male = {
     'Маша': False,
 }
 names = ['Оля', 'Петя', 'Вася', 'Маша']
-for i in is_male:
-    if is_male[i] == True:
-        print(f'{i} пол мужской')
+for name in names:
+    if name == 'Петя' or name == 'Вася':
+        print(f'{name} пол мужской')
     else:
-        print(f'{i} пол женский')
+        print(f'{name} пол женский')
 
 
 
@@ -47,11 +47,10 @@ groups = [
     ['Вася', 'Маша', 'Саша', 'Женя'],
     ['Оля', 'Петя', 'Гриша'],
 ]
-a = 0
-print(f'Всего {len(groups)} группы.')
-for i in groups:
-    a += 1
-    print(f'Группа {a}: {len(i)} ученика.')
+counter_1 = 0
+for group in groups:
+    counter_1 += 1
+    print(f'Группа {counter_1}: {len(group)} ученика')
 
 
 
@@ -66,7 +65,7 @@ groups = [
     ['Оля', 'Петя', 'Гриша'],
     ['Вася', 'Маша', 'Саша', 'Женя'],
 ]
-a = 0
-for i in groups:
-    a += 1
-    print(f'Группа {a}: {", ".join(i)}')
+count_groups = 0
+for group in groups:
+    count_groups += 1
+    print(f'Группа {count_groups}: {", ".join(group)}')
