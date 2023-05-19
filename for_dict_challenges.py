@@ -13,11 +13,11 @@ students = [
     {'first_name': 'Петя'},
 ]
 from collections import Counter
-sum_students = [i['first_name'] for i in students]
-print(sum_students)
-for i, j in Counter(sum_students).items():
-    print(f'{i}: {j}')
 
+list_students = [name['first_name'] for name in students]
+print(list_students)
+for name, number in Counter(list_students).items():
+    print(f'{name}: {number}')
 
 # Задание 2
 # Дан список учеников, нужно вывести самое часто повторящееся имя
@@ -31,10 +31,10 @@ students = [
     {'first_name': 'Оля'},
 ]
 from collections import Counter
-a = Counter(i['first_name'] for i in students).most_common(1)
-print(f'Самое частое имя среди учеников: {a[0][0]}')
 
-
+student_names = (name['first_name'] for name in students)
+most_common_name = Counter(student_names).most_common(1)
+print(f'Самое частое имя среди учеников: {most_common_name[0][0]}')
 
 # Задание 3
 # Есть список учеников в нескольких классах, нужно вывести самое частое имя в каждом классе.
@@ -51,7 +51,7 @@ school_students = [
         {'first_name': 'Маша'},
         {'first_name': 'Маша'},
         {'first_name': 'Оля'},
-    ],[  # это – третий класс
+    ], [  # это – третий класс
         {'first_name': 'Женя'},
         {'first_name': 'Петя'},
         {'first_name': 'Женя'},
@@ -59,12 +59,12 @@ school_students = [
     ],
 ]
 from collections import Counter
-count = 0
-while count != len(school_students):
-    ab = Counter(i['first_name'] for i in school_students[count]).most_common(1)
-    print(f'Самое частое имя в классе {count+1}: {ab[0][0]}')
-    count += 1
 
+count = 0
+for klass in school_students:
+    most_common_name = Counter(name['first_name'] for name in school_students[count]).most_common(1)
+    print(f'Самое частое имя в классе {count + 1}: {most_common_name[0][0]}')
+    count += 1
 
 # Задание 4
 # Для каждого класса нужно вывести количество девочек и мальчиков в нём.
@@ -84,9 +84,10 @@ is_male = {
     'Миша': True,
     'Даша': False,
 }
-for i in school:
-    print(f"Класс {i['class']}: мальчики {len([j for j in i['students'] if j.get('first_name') in ['Олег', 'Миша']])}, "
-          f"девочки {len([j for j in i['students'] if j.get('first_name') in ['Маша', 'Оля', 'Даша']])}")
+for klass in school:
+    print(
+        f"Класс {klass['class']}: мальчики {[is_male[men_person['first_name']] for men_person in klass['students']].count(True)} "
+        f"девочки {[is_male[women_person['first_name']] for women_person in klass['students']].count(False)}")
 
 # Задание 5
 # По информации о учениках разных классов нужно найти класс, в котором больше всего девочек и больше всего мальчиков
@@ -95,7 +96,7 @@ for i in school:
 # Больше всего девочек в классе 2a
 
 school = [
-    {'class': '2a', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}]},
+    {'class': '2a', 'students': [{'first_name': 'Маша'}, {'first_name': 'Оля'}, {'first_name': 'Оля'}]},
     {'class': '3c', 'students': [{'first_name': 'Олег'}, {'first_name': 'Миша'}]},
 ]
 is_male = {
@@ -104,8 +105,8 @@ is_male = {
     'Олег': True,
     'Миша': True,
 }
-for i in school:
-    if f"{len([j for j in i['students'] if j.get('first_name') in ['Олег', 'Миша']])}" > f"{len([j for j in i['students'] if j.get('first_name') in ['Маша', 'Оля', 'Даша']])}":
-        print(f"Больше всего мальчиков в классе {i['class']}")
+for klass in school:
+    if [is_male[men_person['first_name']] for men_person in klass['students']].count(True) > [is_male[women_person['first_name']] for women_person in klass['students']].count(False):
+        print(f"Больше всего мальчиков в классе {klass['class']}")
     else:
-        print(f"Больше всего девочек в классе {i['class']}")
+        print(f"Больше всего девочек в классе {klass['class']}")
