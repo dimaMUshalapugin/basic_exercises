@@ -69,24 +69,22 @@ def generate_chat_history():
 def zadacha(messages):
 
     from collections import Counter
-    ab = Counter(i['sent_by'] for i in messages).most_common(1)
-    print(f'Больше всего сообщений написал пользователь ID - {ab[0][0]}') # ответ на первый вопрос
+    sum_user = Counter(user['sent_by'] for user in messages).most_common(1)
+    print(f'Больше всего сообщений написал пользователь ID - {sum_user[0][0]}') # ответ на первый вопрос
 
-    ac = Counter(i['reply_for'] for i in messages).most_common(2)
-    print(f'Больше всего ответов - {ac[1][0]}')
-    for i in messages:
-        if i['id'] == ac[1][0]:
-            print(f"{i['sent_by']} айди пользователя, на сообщения которого больше всего отвечали") # ответ на второй вопрос
-    az = {}
-    for i in messages:
-        # print(i['id'], i['reply_for'])
-        # print(i['sent_by'], i['seen_by'])
-        if i['sent_by'] not in az:
-            az[i['sent_by']] = i['seen_by']
+    sum_user = Counter(commentator['reply_for'] for commentator in messages).most_common(2)
+    print(f'Больше всего ответов - {sum_user[1][0]}')
+    for id in messages:
+        if id['id'] == sum_user[1][0]:
+            print(f"{id['sent_by']} айди пользователя, на сообщения которого больше всего отвечали") # ответ на второй вопрос
+    new_dict = {}
+    for message in messages:
+        if message['sent_by'] not in new_dict:
+            new_dict[message['sent_by']] = message['seen_by']
         else:
-            az[i['sent_by']] = az[i['sent_by']] + i['seen_by']
-    print(az)
-    for k, value in az.items():
+            new_dict[message['sent_by']] = new_dict[message['sent_by']] + message['seen_by']
+    print(new_dict)
+    for k, value in new_dict.items():
         print(k, len(set(value))) # решение на 3 задачу
 
 
