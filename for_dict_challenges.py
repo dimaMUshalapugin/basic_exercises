@@ -84,10 +84,20 @@ is_male = {
     'Миша': True,
     'Даша': False,
 }
+
+
+def mens_count():
+    return [is_male[men_person['first_name']] for men_person in klass['students']].count(True)
+
+
+def womens_count():
+    return [is_male[women_person['first_name']] for women_person in klass['students']].count(False)
+
+
 for klass in school:
     print(
-        f"Класс {klass['class']}: мальчики {[is_male[men_person['first_name']] for men_person in klass['students']].count(True)} "
-        f"девочки {[is_male[women_person['first_name']] for women_person in klass['students']].count(False)}")
+        f"Класс {klass['class']}: мальчики {mens_count()} "
+        f"девочки {womens_count()}")
 
 # Задание 5
 # По информации о учениках разных классов нужно найти класс, в котором больше всего девочек и больше всего мальчиков
@@ -106,7 +116,7 @@ is_male = {
     'Миша': True,
 }
 for klass in school:
-    if [is_male[men_person['first_name']] for men_person in klass['students']].count(True) > [is_male[women_person['first_name']] for women_person in klass['students']].count(False):
+    if mens_count() > womens_count():
         print(f"Больше всего мальчиков в классе {klass['class']}")
     else:
         print(f"Больше всего девочек в классе {klass['class']}")

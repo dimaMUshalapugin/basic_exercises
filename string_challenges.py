@@ -28,7 +28,7 @@ for word in sentence.split():
 
 # Вывести усреднённую длину слова в предложении
 sentence = 'Мы приехали в гости'
-spisok = []
+words = []
 for letter in sentence.split():
-    spisok.append(len(letter))
-print(int(sum(spisok)/len(sentence.split())))
+    words.append(len(letter))
+print(int(sum(words)/len(sentence.split())))

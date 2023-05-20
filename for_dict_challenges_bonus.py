@@ -70,22 +70,23 @@ def zadacha(messages):
 
     from collections import Counter
     sum_user = Counter(user['sent_by'] for user in messages).most_common(1)
-    print(f'Больше всего сообщений написал пользователь ID - {sum_user[0][0]}') # ответ на первый вопрос
+    print(f'Больше всего сообщений написал пользователь ID - {sum_user[0][0]}')
 
     sum_user = Counter(commentator['reply_for'] for commentator in messages).most_common(2)
     print(f'Больше всего ответов - {sum_user[1][0]}')
     for id in messages:
         if id['id'] == sum_user[1][0]:
-            print(f"{id['sent_by']} айди пользователя, на сообщения которого больше всего отвечали") # ответ на второй вопрос
+            print(f"{id['sent_by']} айди пользователя, на сообщения которого больше всего отвечали")
+
+
     new_dict = {}
     for message in messages:
         if message['sent_by'] not in new_dict:
             new_dict[message['sent_by']] = message['seen_by']
         else:
             new_dict[message['sent_by']] = new_dict[message['sent_by']] + message['seen_by']
-    print(new_dict)
-    for k, value in new_dict.items():
-        print(k, len(set(value))) # решение на 3 задачу
+    for key_new_dict, value in new_dict.items():
+        print(key_new_dict, len(set(value)))
 
 
 if __name__ == "__main__":
