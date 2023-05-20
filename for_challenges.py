@@ -28,7 +28,7 @@ is_male = {
 }
 names = ['Оля', 'Петя', 'Вася', 'Маша']
 for name in names:
-    if name == 'Петя' or name == 'Вася':
+    if is_male.get(name) == True:
         print(f'{name} пол мужской')
     else:
         print(f'{name} пол женский')
@@ -47,10 +47,9 @@ groups = [
     ['Вася', 'Маша', 'Саша', 'Женя'],
     ['Оля', 'Петя', 'Гриша'],
 ]
-counter_1 = 0
-for group in groups:
-    counter_1 += 1
-    print(f'Группа {counter_1}: {len(group)} ученика')
+
+for group in enumerate(groups, start=1):
+    print(f'Группа {group[0]}: {len(group[1])} ученика')
 
 
 
@@ -65,7 +64,6 @@ groups = [
     ['Оля', 'Петя', 'Гриша'],
     ['Вася', 'Маша', 'Саша', 'Женя'],
 ]
-count_groups = 0
-for group in groups:
-    count_groups += 1
-    print(f'Группа {count_groups}: {", ".join(group)}')
+
+for group in enumerate(groups, start=1):
+    print(f'Группа {group[0]}: {", ".join(group[1])}')
