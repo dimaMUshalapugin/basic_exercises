@@ -9,14 +9,19 @@ word = 'Архангельск'
 print(word.lower().count('а'))
 
 
+
+
+
 # Вывести количество гласных букв в слове
 word = 'Архангельск'
 vowels = ['а', 'е', 'у', 'ы', 'о', 'э', 'я', 'и', 'ю']
 print(len([letter for letter in word if letter.lower() not in vowels]))
 
 
+
 # Вывести количество слов в предложении
 sentence = 'Мы приехали в гости'
+
 print(len(sentence.split()))
 
 

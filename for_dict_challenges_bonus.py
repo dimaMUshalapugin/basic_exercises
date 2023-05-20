@@ -89,6 +89,7 @@ def zadacha(messages):
         print(key_new_dict, len(set(value)))
 
 
+
 if __name__ == "__main__":
     print(generate_chat_history())
     zadacha(generate_chat_history())

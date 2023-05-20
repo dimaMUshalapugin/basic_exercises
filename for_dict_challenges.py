@@ -12,6 +12,7 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Петя'},
 ]
+
 from collections import Counter
 
 list_students = [name['first_name'] for name in students]
