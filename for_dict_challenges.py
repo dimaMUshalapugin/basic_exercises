@@ -61,11 +61,10 @@ school_students = [
 ]
 from collections import Counter
 
-count = 0
-for klass in school_students:
-    most_common_name = Counter(name['first_name'] for name in school_students[count]).most_common(1)
-    print(f'Самое частое имя в классе {count + 1}: {most_common_name[0][0]}')
-    count += 1
+for number_of_class, klass in enumerate(school_students,start=1):
+    most_common_name = Counter(name['first_name'] for name in klass).most_common(1)
+    print(f'Самое частое имя в классе {number_of_class}: {most_common_name[0][0]}')
+
 
 # Задание 4
 # Для каждого класса нужно вывести количество девочек и мальчиков в нём.
@@ -88,16 +87,16 @@ is_male = {
 
 
 def mens_count():
-    return [is_male[men_person['first_name']] for men_person in klass['students']].count(True)
+    return [is_male[men_person['first_name']] for men_person in klass_name['students']].count(True)
 
 
 def womens_count():
-    return [is_male[women_person['first_name']] for women_person in klass['students']].count(False)
+    return [is_male[women_person['first_name']] for women_person in klass_name['students']].count(False)
 
 
-for klass in school:
+for klass_name in school:
     print(
-        f"Класс {klass['class']}: мальчики {mens_count()} "
+        f"Класс {klass_name['class']}: мальчики {mens_count()} "
         f"девочки {womens_count()}")
 
 # Задание 5
@@ -116,8 +115,8 @@ is_male = {
     'Олег': True,
     'Миша': True,
 }
-for klass in school:
+for klass_name in school:
     if mens_count() > womens_count():
-        print(f"Больше всего мальчиков в классе {klass['class']}")
+        print(f"Больше всего мальчиков в классе {klass_name['class']}")
     else:
-        print(f"Больше всего девочек в классе {klass['class']}")
+        print(f"Больше всего девочек в классе {klass_name['class']}")
